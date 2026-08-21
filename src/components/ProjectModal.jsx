@@ -14,7 +14,7 @@ function Section({ label, children }) {
 function ModalImage({ project }) {
   const [imgFailed, setImgFailed] = useState(false);
   return (
-    <div className="order-1 md:order-2 relative h-52 md:h-auto bg-surface-2">
+    <div className="order-1 md:order-2 relative h-48 sm:h-52 md:h-auto bg-surface-2">
       {!imgFailed ? (
         <img
           src={project.image}
@@ -42,7 +42,7 @@ export default function ProjectModal({ project, onClose }) {
           exit={{ opacity: 0 }}
           transition={{ duration: 0.25 }}
           onClick={onClose}
-          className="fixed inset-0 z-[200] bg-black/60 backdrop-blur-sm flex items-center justify-center p-4 sm:p-8"
+          className="fixed inset-0 z-[200] bg-black/60 backdrop-blur-sm flex items-center justify-center p-2 sm:p-8"
         >
           <motion.div
             key={project.slug}
@@ -51,18 +51,18 @@ export default function ProjectModal({ project, onClose }) {
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.94, y: 20 }}
             transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
-            className="relative w-full max-w-[1100px] max-h-[88vh] bg-surface border border-border rounded-[28px] shadow-soft overflow-hidden grid grid-cols-1 md:grid-cols-[1fr_1.15fr]"
+            className="relative w-full max-w-[1100px] max-h-[90vh] bg-surface border border-border rounded-[22px] sm:rounded-[28px] shadow-soft overflow-hidden grid grid-cols-1 md:grid-cols-[1fr_1.15fr]"
           >
             <button
               onClick={onClose}
               aria-label="Close"
-              className="absolute top-4 right-4 z-10 w-9 h-9 rounded-full bg-surface/90 border border-border flex items-center justify-center text-ink hover:border-purple hover:text-purple transition-colors"
+              className="absolute top-3 right-3 sm:top-4 sm:right-4 z-10 w-9 h-9 rounded-full bg-surface/90 border border-border flex items-center justify-center text-ink hover:border-purple hover:text-purple transition-colors"
             >
               <FiX size={16} />
             </button>
 
-            <div className="order-2 md:order-1 overflow-y-auto px-7 py-8 sm:px-9 sm:py-10 max-h-[88vh]">
-              <h3 className="font-display text-2xl sm:text-[28px] font-medium leading-tight mb-6 pr-8">
+            <div className="order-2 md:order-1 overflow-y-auto px-4 py-5 sm:px-9 sm:py-10 max-h-[52vh] md:max-h-[88vh]">
+              <h3 className="font-display text-[26px] sm:text-[28px] font-medium leading-tight mb-5 sm:mb-6 pr-8">
                 {project.title}
               </h3>
 

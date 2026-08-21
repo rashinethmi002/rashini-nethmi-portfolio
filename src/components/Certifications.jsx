@@ -81,7 +81,7 @@ function CertificationStack({ certifications, frontTitle }) {
       <div className="pointer-events-none absolute -z-10 h-[380px] w-[380px] rounded-full bg-purple/25 blur-[90px] top-10 -left-6" />
       <div className="pointer-events-none absolute -z-10 h-[300px] w-[300px] rounded-full bg-gold/20 blur-[90px] bottom-0 -right-6" />
 
-      <div className="relative z-0 h-[620px] w-[92vw] max-w-[480px]">
+      <div className="relative z-0 h-[440px] sm:h-[620px] w-[88vw] max-w-[360px] sm:max-w-[480px]">
         {order.map((cert, depth) => {
           const style = getCardStyle(depth);
           const isFront = depth === 0;
@@ -112,11 +112,11 @@ function CertificationStack({ certifications, frontTitle }) {
                   ? `0 30px 60px -20px ${accent.glow}`
                   : '0 24px 50px -28px rgba(0,0,0,0.45)',
               }}
-              className={`absolute inset-0 flex cursor-pointer flex-col rounded-[28px] border bg-surface p-7 transition-colors duration-300 ${
+              className={`absolute inset-0 flex cursor-pointer flex-col rounded-[24px] sm:rounded-[28px] border bg-surface p-4 sm:p-7 transition-colors duration-300 ${
                 isFront ? accent.ring : 'border-border'
               }`}
             >
-              <div className="relative h-[280px] shrink-0 overflow-hidden rounded-2xl bg-surface-2">
+              <div className="relative h-[200px] sm:h-[280px] shrink-0 overflow-hidden rounded-2xl bg-surface-2">
                 {cert.image ? (
                   <img
                     src={cert.image}
@@ -144,7 +144,7 @@ function CertificationStack({ certifications, frontTitle }) {
                 <p className="font-mono text-[10px] uppercase tracking-[.14em] text-muted/70">
                   {cert.year}
                 </p>
-                <h4 className="mt-2 text-xl font-semibold font-display leading-snug text-ink">
+                <h4 className="mt-2 text-lg sm:text-xl font-semibold font-display leading-snug text-ink">
                   {cert.title}
                 </h4>
                 <p className="mt-2 text-sm text-muted">{cert.issuer}</p>
@@ -181,7 +181,7 @@ function CertificationStack({ certifications, frontTitle }) {
         whileHover={{ scale: 1.08 }}
         whileTap={{ scale: 0.9, rotate: 180 }}
         aria-label="Show next certification"
-        className="mt-8 flex h-12 w-12 items-center justify-center rounded-full bg-purple-deep text-white shadow-lg"
+        className="mt-6 sm:mt-8 flex h-12 w-12 items-center justify-center rounded-full bg-purple-deep text-white shadow-lg"
       >
         <FiArrowRight size={18} />
       </motion.button>
