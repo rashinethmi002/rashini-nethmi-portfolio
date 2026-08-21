@@ -46,6 +46,32 @@ h1,h2,h3{font-family:'Fraunces',serif; font-weight:500; line-height:1.05; letter
   *{animation-duration:0.001ms !important; animation-iteration-count:1 !important; transition-duration:0.001ms !important; scroll-behavior:auto !important;}
 }
 
+@media (max-width: 640px){
+  section[id]{
+    padding-top: 72px !important;
+    padding-bottom: 72px !important;
+  }
+
+  section[id="top"]{
+    padding-top: 92px !important;
+  }
+
+  main section > div[class*="max-w-[1180px]"]{
+    padding-left: 18px !important;
+    padding-right: 18px !important;
+  }
+
+  footer[class*="max-w-[1180px]"]{
+    padding-left: 18px !important;
+    padding-right: 18px !important;
+  }
+
+  .navlinks{left:12px; right:12px;}
+  .brand{font-size:17px;}
+  .mono{width:34px; height:34px;}
+  .socials{gap:12px;}
+}
+
 /* ---------- NAV ---------- */
 header{
   position:fixed; top:0; left:0; right:0; z-index:100; height:var(--nav-h);

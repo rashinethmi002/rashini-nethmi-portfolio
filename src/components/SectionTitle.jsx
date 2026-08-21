@@ -13,12 +13,12 @@ export default function SectionTitle({ index, label, children }) {
       initial="hidden"
       whileInView="show"
       viewport={{ once: true, amount: 0.4 }}
-      className="max-w-[640px] mb-14"
+      className="max-w-[640px] mb-8 sm:mb-14"
     >
-      <p className="flex items-center gap-2.5 font-mono text-[12.5px] tracking-[.14em] uppercase text-purple mb-5 before:content-[''] before:w-[22px] before:h-[1.5px] before:bg-purple">
+      <p className="flex items-center gap-2.5 font-mono text-[11px] sm:text-[12.5px] tracking-[.14em] uppercase text-purple mb-4 sm:mb-5 before:content-[''] before:w-[18px] sm:before:w-[22px] before:h-[1.5px] before:bg-purple">
         {index ? `${index} — ${label}` : label}
       </p>
-      <h2 className="font-display font-medium leading-[1.05] tracking-tight text-[clamp(30px,4vw,44px)]">
+      <h2 className="font-display font-medium leading-[1.05] tracking-tight text-[clamp(28px,7vw,44px)]">
         {children}
       </h2>
     </motion.div>
