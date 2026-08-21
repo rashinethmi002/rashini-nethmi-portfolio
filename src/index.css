@@ -1,0 +1,50 @@
+@import "tailwindcss";
+@import "./styles/animations.css";
+
+/* v4 defaults to prefers-color-scheme; this switches it to class-based
+   so useTheme.js toggling .dark on <html> actually works */
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  --color-bg: var(--bg);
+  --color-bg-alt: var(--bg-alt);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+  --color-ink: var(--ink);
+  --color-muted: var(--muted);
+  --color-border: var(--border);
+  --color-purple: var(--purple);
+  --color-purple-deep: var(--purple-deep);
+  --color-purple-soft: var(--purple-soft);
+  --color-gold: var(--gold);
+  --color-gold-soft: var(--gold-soft);
+
+  --font-display: "Fraunces", serif;
+  --font-sans: "Inter", sans-serif;
+  --font-mono: "Space Mono", monospace;
+
+  --shadow-soft: 0 20px 60px -20px rgba(76, 47, 196, 0.25);
+}
+
+:root {
+  --bg:#FAF8FC; --bg-alt:#F2ECFB; --surface:#FFFFFF; --surface-2:#F7F3FC;
+  --ink:#1C1628; --muted:#6E6580; --border:#E7E0F3;
+  --purple:#6C4CF1; --purple-deep:#4A2FC4; --purple-soft:#EFE8FD;
+  --gold:#C8933F; --gold-soft:#F5E7CE;
+}
+
+.dark {
+  --bg:#100B1C; --bg-alt:#171122; --surface:#1B1428; --surface-2:#1F1830;
+  --ink:#F5F2FA; --muted:#9C92B4; --border:#2B2340;
+  --purple:#A488FF; --purple-deep:#C7B2FF; --purple-soft:#241C3B;
+  --gold:#E8BE7C; --gold-soft:#332816;
+}
+
+html { scroll-behavior: smooth; }
+body { @apply bg-bg text-ink font-sans transition-colors duration-300; }
+::selection { background: var(--purple); color: #fff; }
+
+::-webkit-scrollbar { width: 8px; }
+::-webkit-scrollbar-track { background: var(--bg); }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 100px; }
+::-webkit-scrollbar-thumb:hover { background: var(--purple); }
