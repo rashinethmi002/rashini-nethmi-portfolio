@@ -3,8 +3,8 @@ import alisonImg from '../assets/images/certificates/uiux-alison.png';
 import uomAiImg from '../assets/images/certificates/ai-curve-uom.png';
 import googleAiImg from '../assets/images/certificates/ai-app-google.png';
 import awsImg from '../assets/images/certificates/aws-cloud.png';
-import deloitteImg from '../assets/images/certificates/cyber-deloitte.png';
-import webMor from '../assets/images/certificates/web-mor.png';
+import deloitteImg from '../assets/images/certificates/cyber-deloitte.PNG';
+import webMor from '../assets/images/certificates/web-mor.PNG';
 export const certifications = [
   {
     title: 'Software Development Job Simulation',
