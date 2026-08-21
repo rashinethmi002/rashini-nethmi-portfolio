@@ -4,7 +4,7 @@ export const projects = [
     category: 'Web App',
     title: 'Weekly Report Generator & Team Dashboard',
     github: 'https://github.com/rashinethmi002/Weekly-Report-System',
-    image: '/src/assets/images/project4.PNG',
+    image: '/src/assets/images/project4.png',
     tags: ['Next.js', 'PostgreSQL', 'Prisma', 'Tailwind'],
     description:
       'Full-stack reporting platform with JWT-based role access — team members submit structured weekly reports; managers get a live dashboard with filters, workload analytics, and submission trends.',
@@ -25,7 +25,7 @@ export const projects = [
     category: 'Web App',
     title: 'LumaFit — Smart Workout Tracking',
     github: 'https://github.com/rashinethmi002/Lumafit_Fitness',
-    image: '/src/assets/images/project3.PNG',
+    image: '/src/assets/images/project3.png',
     tags: ['React', 'Node.js', 'Express', 'MongoDB'],
     description:
       'MERN fitness app with category-based workout browsing, timer-driven sessions, and progress analytics, plus an AI coaching chatbot powered by the Claude API.',
@@ -46,7 +46,7 @@ export const projects = [
     category: 'Desktop App',
     title: 'Serene Hotel Management System',
     github: 'https://github.com/rashinethmi002/Serene-_Hotel-_Management-_System',
-    image: '/src/assets/images/project5.PNG',
+    image: '/src/assets/images/project5.png',
     tags: ['Java', 'NetBeans','MySQL'],
     description:
       'A desktop hotel management system for handling customer bookings, room reservations, and day-to-day hotel operations.',
@@ -66,7 +66,7 @@ export const projects = [
     category: 'Web App',
     title: 'Emma Fashion — Front-End Website',
     github: 'https://github.com/rashinethmi002/emmafashion',
-    image: '/src/assets/images/project1.PNG',
+    image: '/src/assets/images/project1.png',
     tags: ['HTML5', 'CSS3'],
     description:
       'A responsive fashion storefront front-end built to practice layout systems and a clean, user-friendly browsing experience.',
@@ -90,7 +90,7 @@ export const projects = [
 
   github: 'https://github.com/rashinethmi002/booknest-bookshop',
 
-  image: '/src/assets/images/project6.PNG',
+  image: '/src/assets/images/project6.png',
 
   tags: ['Java', 'NetBeans'],
 
