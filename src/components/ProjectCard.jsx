@@ -13,7 +13,17 @@ export default function ProjectCard({ project, index, onOpen }) {
       whileHover={{ y: -8 }}
       whileTap={{ scale: 0.97 }}
       transition={{ type: 'spring', stiffness: 300, damping: 22 }}
-      className={`group relative flex flex-col bg-surface border border-border rounded-2xl overflow-hidden transition-shadow duration-300 ${
+      onClick={() => onOpen(project)}
+      onKeyDown={(e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          onOpen(project);
+        }
+      }}
+      tabIndex={0}
+      role="button"
+      aria-label={`Open ${project.title} details`}
+      className={`group relative flex cursor-pointer flex-col bg-surface border border-border rounded-2xl overflow-hidden transition-shadow duration-300 ${
         accent === 'purple'
           ? 'hover:shadow-[0_24px_55px_-18px_rgba(108,76,241,0.45)] hover:border-purple'
           : 'hover:shadow-[0_24px_55px_-18px_rgba(200,147,63,0.4)] hover:border-gold'
