@@ -364,7 +364,8 @@ export default function Hero() {
               </ScrollLink>
 
               <a
-                href="/resume.pdf" download
+                href="/H_V_Rashini_Nethmi_Sandeepani_CV.pdf"
+                download="H_V_Rashini_Nethmi_Sandeepani_CV.pdf"
                 className="group inline-flex items-center gap-2 rounded-full border border-border bg-surface/50 backdrop-blur-sm text-sm font-semibold px-5 py-3 hover:border-purple hover:text-purple hover:-translate-y-0.5 transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-purple/50"
               >
                 Download CV
