@@ -91,7 +91,7 @@ export default function PageIntro({ children }) {
               <p className="mb-4 font-mono text-[10px] uppercase tracking-[0.32em] text-gold sm:text-xs">
                 Portfolio / 2026
               </p>
-              <h1 className="font-display text-[clamp(2.2rem,9vw,6.5rem)] font-medium leading-none tracking-tight text-ink [text-shadow:0_0_30px_color-mix(in_srgb,var(--purple)_25%,transparent)]">
+              <h1 className="font-display text-[clamp(1.5rem,6vw,4.2rem)] font-medium leading-none tracking-tight text-ink [text-shadow:0_0_30px_color-mix(in_srgb,var(--purple)_25%,transparent)]">
                 RASHINI NETHMI
               </h1>
               <motion.div
