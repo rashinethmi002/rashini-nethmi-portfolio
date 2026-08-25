@@ -1,118 +1,133 @@
 import { useState } from 'react';
-import { motion } from 'framer-motion';
-import { FiGithub, FiExternalLink } from 'react-icons/fi';
-import { fadeUp } from '../utils/motionVariants';
+import { AnimatePresence, motion } from 'framer-motion';
+import { FiX, FiGithub } from 'react-icons/fi';
 
-export default function ProjectCard({ project, index, onOpen }) {
-  const [imgFailed, setImgFailed] = useState(false);
-  const accent = index % 2 === 0 ? 'purple' : 'gold';
-
+function Section({ label, children }) {
   return (
-    <motion.div
-      variants={fadeUp}
-      whileHover={{ y: -8 }}
-      whileTap={{ scale: 0.97 }}
-      transition={{ type: 'spring', stiffness: 300, damping: 22 }}
-      onClick={() => onOpen(project)}
-      onKeyDown={(e) => {
-        if (e.key === 'Enter' || e.key === ' ') {
-          e.preventDefault();
-          onOpen(project);
-        }
-      }}
-      tabIndex={0}
-      role="button"
-      aria-label={`Open ${project.title} details`}
-      className={`group relative flex cursor-pointer flex-col bg-surface border border-border rounded-2xl overflow-hidden transition-shadow duration-300 ${
-        accent === 'purple'
-          ? 'hover:shadow-[0_24px_55px_-18px_rgba(108,76,241,0.45)] hover:border-purple'
-          : 'hover:shadow-[0_24px_55px_-18px_rgba(200,147,63,0.4)] hover:border-gold'
-      }`}
-    >
-      {/* top accent bar */}
-      <div
-        className={`absolute inset-x-0 top-0 h-[3px] origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-500 ${
-          accent === 'purple' ? 'bg-gradient-to-r from-purple to-purple-deep' : 'bg-gradient-to-r from-gold to-purple'
-        }`}
-      />
+    <div className="mb-6 last:mb-0">
+      <h4 className="font-mono text-[12px] font-bold uppercase tracking-[.1em] text-gold mb-2">{label}</h4>
+      <div className="text-[14.5px] text-muted leading-relaxed">{children}</div>
+    </div>
+  );
+}
 
-      {/* thumbnail + hover overlay */}
-      <div className="relative aspect-video overflow-hidden bg-surface-2">
-        {!imgFailed ? (
-          <img
-            src={project.image}
-            alt={project.title}
-            onError={() => setImgFailed(true)}
-            className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-          />
-        ) : (
-          <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-purple-soft to-surface-2">
-            <span className="font-display italic text-3xl text-purple">RN</span>
-          </div>
-        )}
-
-        <div className="absolute inset-0 flex items-center justify-center gap-4 bg-gradient-to-t from-purple-deep/90 via-purple/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-          <a
-            href={project.github}
-            target="_blank"
-            rel="noopener noreferrer"
-            onClick={(e) => e.stopPropagation()}
-            aria-label="View source on GitHub"
-            className="w-11 h-11 rounded-full bg-white/15 backdrop-blur-sm border border-white/30 flex items-center justify-center text-white translate-y-3 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300 delay-75 hover:bg-white hover:text-purple-deep hover:scale-110"
-          >
-            <FiGithub size={18} />
-          </a>
-          {project.demo && (
-            <a
-              href={project.demo}
-              target="_blank"
-              rel="noopener noreferrer"
-              onClick={(e) => e.stopPropagation()}
-              aria-label="View live preview"
-              className="w-11 h-11 rounded-full bg-white/15 backdrop-blur-sm border border-white/30 flex items-center justify-center text-white translate-y-3 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300 delay-150 hover:bg-white hover:text-purple-deep hover:scale-110"
-            >
-              <FiExternalLink size={18} />
-            </a>
-          )}
+function ModalImage({ project, className = '' }) {
+  const [imgFailed, setImgFailed] = useState(false);
+  return (
+    <div className={`relative bg-surface-2 ${className}`}>
+      {!imgFailed ? (
+        <img
+          src={project.image}
+          alt={project.title}
+          onError={() => setImgFailed(true)}
+          className="w-full h-full object-cover"
+        />
+      ) : (
+        <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-purple-soft to-surface-2">
+          <span className="font-display italic text-5xl text-purple">RN</span>
         </div>
-      </div>
+      )}
+    </div>
+  );
+}
 
-      <div className="p-6 flex flex-col flex-1">
-        <p className="font-mono text-[11px] tracking-[.14em] uppercase text-purple mb-2">
-          {project.category}
-        </p>
-
-        <h3 className="text-lg font-semibold font-display leading-snug mb-3">{project.title}</h3>
-
-        <div className="flex flex-wrap gap-1.5 mb-4">
-          {project.tags.map((tag, j) => {
-            const tagAccent = (index + j) % 2 === 0 ? 'purple' : 'gold';
-            return (
-              <span
-                key={tag}
-                className={`text-[10.5px] font-mono font-bold uppercase tracking-wide px-2.5 py-1 rounded-md ${
-                  tagAccent === 'purple' ? 'bg-purple-soft text-purple' : 'bg-gold-soft text-gold'
-                }`}
-              >
-                {tag}
-              </span>
-            );
-          })}
-        </div>
-
-        <p className="text-sm text-muted leading-relaxed flex-1">{project.description}</p>
-
-        <button
-          onClick={() => onOpen(project)}
-          className={`mt-5 inline-flex items-center justify-center gap-2 text-sm font-semibold rounded-full border px-4 py-2.5 transition-all w-fit active:scale-95 ${
-            accent === 'purple'
-              ? 'border-border hover:border-purple hover:text-purple hover:bg-purple-soft'
-              : 'border-border hover:border-gold hover:text-gold hover:bg-gold-soft'
-          }`}
+export default function ProjectModal({ project, onClose }) {
+  return (
+    <AnimatePresence>
+      {project && (
+        <motion.div
+          key="backdrop"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.25 }}
+          onClick={onClose}
+          className="fixed inset-0 z-[200] bg-black/60 backdrop-blur-sm flex items-end sm:items-center justify-center p-0 sm:p-8"
         >
-          Read more
-        </button>
-      </div>
-    </motion.div>
+          <motion.div
+            key={project.slug}
+            onClick={(e) => e.stopPropagation()}
+            initial={{ opacity: 0, scale: 0.94, y: 20 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            exit={{ opacity: 0, scale: 0.94, y: 20 }}
+            transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
+            className="relative w-full h-[92dvh] sm:h-auto sm:max-h-[90vh] max-w-[1100px] bg-surface border border-border rounded-t-[28px] sm:rounded-[28px] shadow-soft overflow-hidden md:grid md:grid-cols-[1fr_1.15fr]"
+          >
+            <button
+              onClick={onClose}
+              aria-label="Close"
+              className="absolute top-3 right-3 sm:top-4 sm:right-4 z-10 w-9 h-9 rounded-full bg-surface/90 border border-border flex items-center justify-center text-ink hover:border-purple hover:text-purple transition-colors"
+            >
+              <FiX size={16} />
+            </button>
+
+            {/*
+              Mobile: this wrapper is a plain scrollable block, so title,
+              sections AND the image all scroll together as one column
+              (matches the reference screenshot — no separate cut-off box).
+              Desktop (md+): "contents" makes this wrapper disappear so its
+              two children become direct grid items in the 2-col layout.
+            */}
+            <div className="h-full overflow-y-auto md:contents">
+              <div className="md:order-1 px-5 pt-14 pb-8 sm:px-9 sm:py-10">
+                <h3 className="font-display text-[24px] sm:text-[28px] font-medium leading-tight mb-5 sm:mb-6 pr-8">
+                  {project.title}
+                </h3>
+
+                {project.overview && <Section label="Overview">{project.overview}</Section>}
+                {project.problem && <Section label="Problem">{project.problem}</Section>}
+                {project.solution && <Section label="Solution">{project.solution}</Section>}
+
+                {project.features?.length > 0 && (
+                  <Section label="Key Features">
+                    <ul className="space-y-1.5 mt-1">
+                      {project.features.map((f, i) => (
+                        <li key={i} className="flex gap-2 text-[14px] leading-relaxed">
+                          <span className="text-purple mt-[3px]">›</span>
+                          <span>{f}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </Section>
+                )}
+
+                {project.techStack?.length > 0 && (
+                  <Section label="Tech Stack">
+                    <div className="flex flex-wrap gap-2 mt-1">
+                      {project.techStack.map((t) => (
+                        <span key={t} className="text-[11.5px] font-mono font-semibold px-2.5 py-1.5 rounded-md bg-purple-soft text-purple">
+                          {t}
+                        </span>
+                      ))}
+                    </div>
+                  </Section>
+                )}
+
+                {project.futureImprovements && (
+                  <Section label="Future Improvements">{project.futureImprovements}</Section>
+                )}
+
+                {/* Image: only rendered here on mobile, bleeding full-width edge to edge */}
+                <ModalImage project={project} className="md:hidden -mx-5 sm:-mx-9 mt-7 mb-1 h-64 sm:h-72" />
+
+                {project.github && (
+                  <a
+                    href={project.github}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 mt-8 text-sm font-semibold text-purple hover:underline"
+                  >
+                    <FiGithub size={15} /> View on GitHub
+                  </a>
+                )}
+              </div>
+
+              {/* Desktop-only side image column */}
+              <ModalImage project={project} className="hidden md:block md:order-2 h-full" />
+            </div>
+          </motion.div>
+        </motion.div>
+      )}
+    </AnimatePresence>
   );
 }
