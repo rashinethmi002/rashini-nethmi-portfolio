@@ -11,10 +11,10 @@ function Section({ label, children }) {
   );
 }
 
-function ModalImage({ project }) {
+function ModalImage({ project, className = '' }) {
   const [imgFailed, setImgFailed] = useState(false);
   return (
-    <div className="order-1 md:order-2 relative h-[min(38dvh,420px)] min-h-[220px] sm:h-52 md:h-auto bg-surface-2">
+    <div className={`relative bg-surface-2 ${className}`}>
       {!imgFailed ? (
         <img
           src={project.image}
@@ -42,7 +42,7 @@ export default function ProjectModal({ project, onClose }) {
           exit={{ opacity: 0 }}
           transition={{ duration: 0.25 }}
           onClick={onClose}
-          className="fixed inset-0 z-[200] bg-black/60 backdrop-blur-sm flex items-center justify-center p-5 sm:p-8"
+          className="fixed inset-0 z-[200] bg-black/60 backdrop-blur-sm flex items-end sm:items-center justify-center p-0 sm:p-8"
         >
           <motion.div
             key={project.slug}
@@ -51,18 +51,30 @@ export default function ProjectModal({ project, onClose }) {
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.94, y: 20 }}
             transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
-            className="relative w-full h-[calc(100dvh-40px)] sm:h-auto sm:max-h-[90vh] max-w-[1100px] bg-surface border border-border rounded-[24px] sm:rounded-[28px] shadow-soft overflow-hidden grid grid-rows-[minmax(0,1fr)_auto] md:grid-rows-none md:grid-cols-[1fr_1.15fr]"
+            className="relative w-full h-[100dvh] sm:h-auto sm:max-h-[90vh] max-w-[1100px] bg-surface border border-border rounded-none sm:rounded-[28px] shadow-soft flex flex-col overflow-y-auto md:overflow-hidden md:flex-row md:grid md:grid-cols-[1fr_1.15fr]"
           >
+            {/*
+              Close button: fixed to the screen on mobile (so it's always
+              reachable no matter how far the content below has scrolled),
+              absolute relative to the panel on desktop (original behavior).
+            */}
             <button
               onClick={onClose}
               aria-label="Close"
-              className="absolute top-3 right-3 sm:top-4 sm:right-4 z-10 w-9 h-9 rounded-full bg-surface/90 border border-border flex items-center justify-center text-ink hover:border-purple hover:text-purple transition-colors"
+              className="fixed sm:absolute top-3 right-3 sm:top-4 sm:right-4 z-20 w-9 h-9 rounded-full bg-surface/90 border border-border flex items-center justify-center text-ink hover:border-purple hover:text-purple transition-colors"
             >
               <FiX size={16} />
             </button>
 
-            <div className="order-2 md:order-1 min-h-0 overflow-y-auto px-5 py-6 sm:px-9 sm:py-10 md:max-h-[88vh]">
-              <h3 className="font-display text-[26px] sm:text-[28px] font-medium leading-tight mb-5 sm:mb-6 pr-8">
+            {/* Image first in DOM order → on mobile it's simply the first thing
+                in the single scrolling column below the fixed close button. */}
+            <ModalImage
+              project={project}
+              className="order-1 md:order-2 h-64 sm:h-72 md:h-auto shrink-0"
+            />
+
+            <div className="order-2 md:order-1 px-5 pt-6 pb-10 sm:px-9 sm:py-10 md:overflow-y-auto md:max-h-[88vh]">
+              <h3 className="font-display text-[24px] sm:text-[28px] font-medium leading-tight mb-5 sm:mb-6 pr-8">
                 {project.title}
               </h3>
 
@@ -110,8 +122,6 @@ export default function ProjectModal({ project, onClose }) {
                 </a>
               )}
             </div>
-
-            <ModalImage project={project} />
           </motion.div>
         </motion.div>
       )}
