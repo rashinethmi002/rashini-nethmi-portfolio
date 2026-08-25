@@ -14,7 +14,7 @@ function Section({ label, children }) {
 function ModalImage({ project }) {
   const [imgFailed, setImgFailed] = useState(false);
   return (
-    <div className="order-1 md:order-2 relative h-56 sm:h-52 md:h-auto bg-surface-2">
+    <div className="order-1 md:order-2 relative h-[min(38dvh,420px)] min-h-[220px] sm:h-52 md:h-auto bg-surface-2">
       {!imgFailed ? (
         <img
           src={project.image}
@@ -42,7 +42,7 @@ export default function ProjectModal({ project, onClose }) {
           exit={{ opacity: 0 }}
           transition={{ duration: 0.25 }}
           onClick={onClose}
-          className="fixed inset-0 z-[200] bg-black/60 backdrop-blur-sm flex items-center justify-center p-0 sm:p-8"
+          className="fixed inset-0 z-[200] bg-black/60 backdrop-blur-sm flex items-center justify-center p-5 sm:p-8"
         >
           <motion.div
             key={project.slug}
@@ -51,7 +51,7 @@ export default function ProjectModal({ project, onClose }) {
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.94, y: 20 }}
             transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
-            className="relative w-full h-full sm:h-auto sm:max-h-[90vh] max-w-[1100px] bg-surface border border-border rounded-none sm:rounded-[28px] shadow-soft overflow-hidden grid grid-cols-1 md:grid-cols-[1fr_1.15fr]"
+            className="relative w-full h-[calc(100dvh-40px)] sm:h-auto sm:max-h-[90vh] max-w-[1100px] bg-surface border border-border rounded-[24px] sm:rounded-[28px] shadow-soft overflow-hidden grid grid-rows-[minmax(0,1fr)_auto] md:grid-rows-none md:grid-cols-[1fr_1.15fr]"
           >
             <button
               onClick={onClose}
@@ -61,7 +61,7 @@ export default function ProjectModal({ project, onClose }) {
               <FiX size={16} />
             </button>
 
-            <div className="order-2 md:order-1 overflow-y-auto px-4 py-5 sm:px-9 sm:py-10 max-h-[calc(100dvh-220px)] sm:max-h-[88vh]">
+            <div className="order-2 md:order-1 min-h-0 overflow-y-auto px-5 py-6 sm:px-9 sm:py-10 md:max-h-[88vh]">
               <h3 className="font-display text-[26px] sm:text-[28px] font-medium leading-tight mb-5 sm:mb-6 pr-8">
                 {project.title}
               </h3>
