@@ -8,10 +8,11 @@ import Projects from './components/Projects';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
 import SmokeCursor from './components/SmokeCursor';
+import PageIntro from './components/PageIntro';
 
 export default function App() {
   return (
-    <>
+    <PageIntro>
       <Navbar />
       <main>
         <Hero />
@@ -24,6 +25,6 @@ export default function App() {
         <Footer />
         <SmokeCursor />
       </main>
-    </>
+    </PageIntro>
   );
 }
