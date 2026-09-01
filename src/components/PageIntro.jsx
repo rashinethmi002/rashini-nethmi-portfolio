@@ -31,7 +31,7 @@ function ConnectionField() {
 /* ------------------------------------------------------------------ */
 
 const RAIN_GLYPHS =
-  '01010101ABCDEFGHIJKLMNOPQRSTUVWXYZ+-*/=<>#%&{}[]()_~^•·◆◇▢▣△○'.split('');
+  'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#%&_=+-/|<>[]{}()•·◇◆△○,.;:'.split('');
 
 function randomGlyph() {
   return RAIN_GLYPHS[(Math.random() * RAIN_GLYPHS.length) | 0];
@@ -495,7 +495,7 @@ export default function PageIntro({ children }) {
               transition={{ duration: dispersing ? 0.55 : 0.3, ease: [0.22, 1, 0.36, 1] }}
             >
               <h1
-                className="font-display select-none text-[13vw] font-bold leading-none tracking-tight sm:text-[64px]"
+                className="font-display select-none text-[1.8rem] font-bold leading-[0.9] tracking-[-0.06em] sm:text-[2.6rem]"
                 style={{ color: 'var(--ink)' }}
               >
                 <DecodingText
@@ -536,7 +536,7 @@ export default function PageIntro({ children }) {
                     : { opacity: 0, y: 8 }
                 }
                 transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
-                className="mt-3 font-mono text-[11px] font-semibold uppercase tracking-[0.42em] sm:text-[13px]"
+                className="mt-3 font-mono text-[10px] font-semibold uppercase tracking-[0.28em] sm:text-[12px] sm:tracking-[0.36em]"
                 style={{ color: 'color-mix(in srgb, var(--gold) 80%, var(--ink) 10%)' }}
               >
                 Web Developer
